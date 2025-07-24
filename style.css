@@ -1,0 +1,56 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
+    background-color: #e4007c; /* Movemos el fondo al header */
+    height: 60px;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;; /* Alinea el contenido (el <ul>) a la derecha */
+    align-items: center;     /* Centra el contenido verticalmente */
+    background-color: #e4007c; /* Un color de fondo para ver mejor la barra de navegación */
+    height: 100%;
+    padding: 1rem 40px; /* 1rem arriba/abajo, 40px a los lados. Ajusta 40px para más/menos espacio */
+}
+
+/* Estiliza el logo */
+
+.logo{
+    height: 60px;
+    width: auto;
+}
+
+/* Estilos para la lista <ul> que está dentro del menú */
+.menu ul {
+    list-style: none; /* Quita los puntos (viñetas) de la lista */
+    padding: 0;       /* Quita el padding por defecto de la lista */
+    margin: 0;        /* Quita el margen por defecto de la lista */
+    display: flex;    /* Pone los elementos del menú (li) en una fila horizontal */
+    gap: 30px;        /* Añade un espacio entre cada elemento del menú */
+}
+
+/* Estilos para los enlaces <a> dentro del menú */
+.menu a {
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    color: white;           /* Cambia el color del texto */
+    font-weight: bold;
+}
+
+.hero{
+    /* Hacemos que la seccion ocupe el alto de la pantalla menu la altura del header (60px) */
+    height: calc(100vh - 60px);
+    width: 100%;
+    overflow: hidden;
+}
+
+.portada {
+    width: 100%;
+    height: 100%;;
+    object-fit: cover; /* Evita que la imagen se deforme si no es cuadrada */
+
+    /* Opcional: si quieres que la imagen sea un círculo, descomenta la línea de abajo */
+    /* border-radius: 50%; */
+}
