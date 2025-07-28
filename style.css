@@ -1,26 +1,55 @@
+/* Importamos la fuente Montserrat desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap');
+
+body {
+    margin: 0; /* Elimina el margen por defecto del navegador */
+    font-family: 'Montserrat' , sans-serif; /* Establece la fuente principal para toda la pagina */
+    color: #333; /* Un color de texto base para mejor legibilidad */
+    background-color: #fff; /* Fondo blanco por defecto */
+}
 header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    
+    left: 0;
+    width: 100%;
     background-color: #e4007c; /* Movemos el fondo al header */
-    height: 60px;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: white;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 6rem; /* Un tamaño grande para que sea protagonista */
+    font-family: 'Dancing Script', cursive;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Sombra para mejorar la legibilidad */
+    color: white;
 }
 
 .menu {
     display: flex;
-    justify-content: space-between;; /* Alinea el contenido (el <ul>) a la derecha */
+    justify-content: space-between; /* Alinea el contenido (el <ul>) a la derecha */
     align-items: center;     /* Centra el contenido verticalmente */
-    background-color: #e4007c; /* Un color de fondo para ver mejor la barra de navegación */
-    height: 100%;
-    padding: 1rem 40px; /* 1rem arriba/abajo, 40px a los lados. Ajusta 40px para más/menos espacio */
+    padding: 0.5rem 40px; /* 1rem arriba/abajo, 40px a los lados. Ajusta 40px para más/menos espacio */
 }
 
 /* Estiliza el logo */
 
 .logo{
-    height: 60px;
-    width: auto;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
+    cursor: pointer;
 }
 
 /* Estilos para la lista <ul> que está dentro del menú */
@@ -36,14 +65,46 @@ header {
 .menu a {
     text-decoration: none; /* Quita el subrayado de los enlaces */
     color: white;           /* Cambia el color del texto */
-    font-weight: bold;
+    font-weight: bold; /* Texto en negrita */
+    font-size: 1.1rem; /* Aumenta el tamaño de la letra */
+    padding: 20px 30px; /* Añade espacio interno para hacer el boton mas grande */
+    border-radius: 5px; /* Redondea las esquinas para un look de boton */
+    transition: background-color 0.3s ease; /* Transicion suave para el hover */
+}
+
+.menu-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre el menú y los iconos sociales */
+}
+
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Color sutil al pasar el cursor */
+}
+
+/* Estilos para los iconos sociales en el header */
+.header-social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.header-social-icons a {
+    color: white;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.header-social-icons a:hover {
+    transform: scale(1.2); /* Efecto de zoom al pasar el cursor */
+    color: #f5b7d9; /* Un rosa más claro para el hover */
 }
 
 .hero{
     /* Hacemos que la seccion ocupe el alto de la pantalla menu la altura del header (60px) */
-    height: calc(100vh - 60px);
+    height: 70vh;
     width: 100%;
     overflow: hidden;
+    position: relative; /* Necesario para posicionar la capa de opacidad */ 
 }
 
 .portada {
@@ -53,4 +114,457 @@ header {
 
     /* Opcional: si quieres que la imagen sea un círculo, descomenta la línea de abajo */
     /* border-radius: 50%; */
+}
+
+.hero::after {
+    content: ''; /* Obligatorio para que el pseudo-elemento se muestre */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3); /* Capa negra con 30% de opacidad. Ajusta el 0.3 para mas o menos opacidad */  
+}
+
+/* Alinea las 3 imagenes de los distintos tipos de mole a lo largo de la pantalla en forma que se vean las 3 en una sola linea */
+
+.tres-moles {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en multiples lineas */
+    align-items: flex-start; /* Alinea las tarjetas desde arriba para que se vean bien con texto de diferente altura */
+    padding: 2rem 1rem;
+    gap: 2rem; /* Aumentamos un poco el espacio entre lar tarjetas */
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+}
+
+.mole-card {
+    display: flex;
+    flex-direction: column; /* Apila la imagen y el text verticalmente */
+    align-items: center; /* Centra el contenido de la tarjeta */    
+    text-align: center;
+    max-width: 30%; /* Limita el ancho de cada tarjeta */
+}
+
+/* Se borra qui .mole-card img {} por que creamos otro div que se llama .mole-image-container */
+
+.mole-image-container {
+    position: relative; /* Necesario para posicionar el overlay */
+    width: 100%;
+    height: 250px; /* Le damos una altura fija al contenedor, Puedes ajustar este valor. */
+    border-radius: 10px; /* Aplicamos el borde redondeado al contenedor */
+    overflow: hidden; /* Oculta lo que se salga del contenedor (el zoom de la imagen) */
+    margin-bottom: 1.5rem; /* Espacio entre la imagen y el texto */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es interactivo */
+}
+
+.mole-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* Capa opaca negra */
+    opacity: 1; /* Visible por defecto */
+    transition: opacity 0.3s ease; /* Transicion suave para la opacidad */
+}
+
+.mole-card:hover .mole-image-container::after {
+    opacity: 0; /* La capa se hace transparente en hover */
+}
+
+.mole-card img{
+    width: 100%;
+    height: 100%; /* Hacemos que la imagen ocupe toda la altura del contenedor */
+    object-fit: cover; /* Clave: La imagen cubre el espacio, recortando el exceso sin deformarse */
+    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
+    transition: transform 0.3s ease; /* Transicion suave para el zoom */
+}
+
+.mole-card:hover img {
+    transform: scale(1.05); /* La imagen se agranda un poco en hover */
+}
+
+.mole-card p {
+    margin: 0; /* Quita el margen por defecto del parrafo */
+    color: #000; /* Un color de texto mas oscuro para mejor lectrua */
+    font-family: 'Montserrat', sans-serif; /* Usamos la fuente importada */
+    line-height: 1.5; /* Mejora la legibilidad del texto */
+    font-weight: bold; /* Texto en negrita */
+    /* Propiedades para ocultar el texto y mostrarlo unicamente cuando el cursor esta sobre la imagen */
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+    transition: opacity 0.3s ease, max-height 0.4s ease, margin-top 0.4s ease;
+}
+
+/* Nueva regla para mostrar el parrafo en hover (VISIBLE) */
+.mole-card:hover p {
+    opacity: 1;
+    max-height: 200px; /* Altura suficiente para que quepa el texto */
+    margin-top: 1.5rem; /* Espacio entre imagen y texto que aparece */
+}
+
+/* --- SECCION DE CARRUSEL DE EXPOS --- */
+
+.carousel-section {
+    padding: 4rem 0;
+    background-color: #f8f8f8;
+}
+
+.carousel-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2.5rem;
+}
+
+.carrusel{
+    position: relative; /* Contenedor de posicionamiento para las flechas */
+}
+
+.carrusel .slick-slide {
+    padding: 0 15px; /* Espacio entre las imagenes */
+}
+
+.carrusel img {
+    width: 100%;
+    height: 500px; /* Altura fija para las imagenes del carrusel */
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer; /* indica que la imagen es clickeable */
+}
+
+/* --- ESTILOS PERSONALIZADOS PARA SLICK CAROUSEL --- */
+
+
+/* Estilos para el BOTÓN que contiene la flecha */
+.slick-prev,
+.slick-next {
+    /* Posicionamiento y tamaño del área de click */
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+    /* Reseteo visual completo: quitamos fondo, borde, etc. */
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+}
+
+/* Posicionamiento especifico para cada flecha */
+
+.slick-prev{
+    left: 50px; /* Posicion de la flecha izquierda */
+}
+
+.slick-next {
+    right: 80px; /* Posicion de la flecha derecha */
+}
+
+/* Estilos para el ICONO de la flecha (el carácter ">") */
+.slick-prev::before,
+.slick-next::before {
+    /* Apariencia de la flecha */
+    font-family: 'slick'; /* Fuente de iconos de la librería */
+    font-size: 50px;
+    color: #e4007c;
+    /* Aseguramos que sea visible y no tenga fondo propio */
+    opacity: 1;
+    background: transparent !important;
+}
+
+.slick-dots li button:before {
+    color: #e4007c;
+    font-size: 18px; /* Hacemos los puntos mas grander */
+    opacity: 0.5;
+}
+
+.slick-dots li.slick-active button:before {
+    opacity: 1;
+}
+
+.slick-dots {
+    bottom: -50px; /* Aumentamos el valor negativo para bajar mas los puntos */
+}
+
+#lightbox {
+    display: none; /* Oculta por defecto */
+    position: fixed; /* Se queda fijo en la pantalla */
+    z-index: 2000; /* Por encima de todo lo demas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+}
+
+#lightbox img {
+    max-width: 85vw; /* Ocupa maximo el 85% del ancho de la pantalla */
+    max-height: 85vh; /* Ocupa maximo el 85% de la altura de la pantalla */
+    border-radius: 5px;
+}
+
+#close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Añadimos los estilos para las nuevas flechas del lightbox al final de tu archivo css */
+
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 25px;
+    user-select: none; /* Evita que el texto de la flecha se seleccione */
+    transition: background-color 0.2s ease;
+    border-radius: 5px;
+}
+
+#lightbox-prev {
+    left: 15px;
+}
+
+#lightbox-next {
+    right: 15px;
+}
+
+.lightbox-arrow:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- SECCION DE CONTACTO --- */
+
+.contact-section {
+    padding: 4rem 2rem;
+    background-color: #fff;
+}
+
+.contact-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 3rem;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto; /* Centra el contenedor */
+}
+
+.contact-info, .contact-form {
+    flex: 1;
+    min-width: 300px; /* Ancho minimo para que no se aplaste en pantallas pequeñas */
+    padding: 1.5rem;
+}
+
+.contact-info h3, .contact-form h3 {
+    color: #e4007c; /* Color principal de la marca */
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.contact-info p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.contact-info a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #e4007c;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #e4007c;
+    box-shadow: 0 0 5px rgba(228, 0, 124, 0.5);
+}
+
+.submit-btn {
+    display: inline-block;
+    background-color: #e4007c;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #c3006a; /* Un tono mas oscuro para el hover */
+}
+
+#lightbox {
+    display: none; /* Oculta por defecto */
+    position: fixed; /* Se queda fijo en la pantalla */
+}
+
+/* --- PIE DE PÁGINA PROFESIONAL --- */
+
+footer {
+    background-color: #2c2c2c; /* Un fondo oscuro y elegante */
+    color: #ccc; /* Color de texto claro para contraste */
+    padding: 4rem 2rem 0; /* Espaciado superior, 0 en la parte inferior para el footer-bottom */
+    font-size: 0.9rem;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 220px; /* Ancho mínimo para cada columna */
+}
+
+.footer-column h4 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+/* Línea decorativa debajo de los títulos del footer */
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #e4007c; /* Color de la marca */
+}
+
+.footer-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.footer-column.about p {
+    line-height: 1.6;
+}
+
+.footer-column.links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column.links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #e4007c;
+    padding-left: 5px; /* Pequeño efecto de desplazamiento */
+}
+
+.footer-column.contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.8rem;
+}
+
+.footer-column.contact i {
+    color: #e4007c;
+    font-size: 1.1rem;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #444;
+    color: #fff;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #e4007c;
+    transform: translateY(-3px); /* Efecto de elevación */
+    color: #fff; /* Aseguramos que el color del icono no cambie */
+    padding-left: 0; /* Reseteamos el padding del hover general */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid #444;
+    margin-top: 2rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.85rem;
 }
