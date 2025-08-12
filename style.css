@@ -568,3 +568,160 @@ footer {
     margin: 0;
     font-size: 0.85rem;
 }
+
+/* --- ESTILOS RESPONSIVOS --- */
+
+/* Estilos para el boton del menu movil (hamburgesas) */
+.menu-toggle {
+    display: none; /* Oculto en escritorio por defecto */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1100; /* Asegura que este por encima del contenido del meni */
+}
+
+/* Para tablets y pantallas medianas (hasta 1024px) */
+@media (max-width: 1024px) {
+    .menu {
+        padding: 0.5rem 20px;
+    }
+
+    .menu ul {
+        gap: 15px;
+    }
+
+    .menu a {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+
+    .hero-text h1 {
+        font-size: 5rem;
+    }
+
+    .mole-card {
+        max-width: 45%; /* Dos tarjetas por fila */
+        flex-basis: 45%;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-info, .contact-form {
+        width: 100%;
+        max-width: 600px; /* Limita el ancho en tablets */
+    }
+}
+
+/* Para moviles y tablets pequeñas (hasta 768px) */
+@media (max-width: 768px) {
+    /* --- Header y Menu Movil --- */
+
+    .menu-toggle {
+        display: block; /* Muestra el boton de hamburgesas en moviles */
+    }
+
+    .menu-right {
+        display: none; /* Ocultamos el menu de escritprio por defecto */
+        position: absolute;
+        top: 100%; /* Se posiciona justo debajo del header */
+        left: 0;
+        width: 100%;
+        background-color: #e4007c;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .menu-right.active {
+        display: flex; /* Mostramos el menu cuando tiene la clase 'active' */
+    }
+
+    .menu ul {
+        flex-direction: column; /* Apilamos los enlaces verticalmente */
+    }
+
+    .menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu a {
+        display: block; /* Hacemos que el enlace ocupe todo el ancho */
+        padding: 1rem;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .menu a:hover {
+        background-color: #c3006a;
+    }
+
+    .header-social-icons {
+        margin-top: 1rem; /* Espacio entre los enlaces y los iconos sociales */
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+        height: 50vh;
+    }
+
+    .hero-text h1 {
+        font-size: 3.5rem; /* Hacemos el titulo mas pequeño */
+    }
+
+    /* --- Tarjetas de Mole --- */
+    .tres-moles {
+        flex-direction: column; /* Apilamos las tarjetas verticalmente */
+        align-items: center; /* Centramos las tarjetas */
+        gap: 2.5rem;
+        padding: 2rem;
+    }
+
+    .mole-card {
+        max-width: 350px; /* Un ancho maximo para que no se estire demasiado */
+        flex-basis: 100%; /* Cada tarjeta ocupa todo el ancho */
+    }
+
+    /* --- Carrusel --- */
+    .carousel-section h2, .contact-section h2 {
+        font-size: 2rem;
+    }
+    .carrusel img {
+        height: 300px; /* Altura mas adecuada para moviles */
+    }
+
+    .slick-prev, .slick-next {
+        display: none !important; /* Usamos !important para sobreescibir los estilos en linea de Slick */
+    }
+
+    .slick-dots {
+        bottom: -35px;
+    }
+
+    /* --- Contacto y Footer --- */
+    .contact-section {
+        padding: 3rem 1rem;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-column.contact p {
+        justify-content: center;
+    }
+}
